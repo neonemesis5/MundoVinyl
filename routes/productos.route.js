@@ -4,11 +4,16 @@ const ProductsRoute = express.Router();
 const Productos = require('../controller/productos.controller');
 const { autenticarJWT } = require('../middlewares/JWT');
 
-//ProductsRoute.get('/details/',autenticarJWT,Productos.getProductsByCategory);
 ProductsRoute.post('/register',autenticarJWT,Productos.createProduct);
 
-ProductsRoute.get('/filter',autenticarJWT, Productos.getAllProducts);
-ProductsRoute.get('/details',autenticarJWT, Productos.getProductsByCategory);
-ProductsRoute.put('/update',autenticarJWT, Productos.updateQtyProduct);
+ProductsRoute.get('/',autenticarJWT, Productos.getAllProducts);
+
+ProductsRoute.get('/filter',autenticarJWT, Productos.getfilter);
+
+ProductsRoute.get('/details',autenticarJWT, Productos.getProductByID);
+
+ProductsRoute.put('/update',autenticarJWT, Productos.updateProduct);
+
+ProductsRoute.delete('/delete',autenticarJWT, Productos.deleteProduct);
 
 module.exports = ProductsRoute;

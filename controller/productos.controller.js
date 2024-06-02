@@ -2,11 +2,14 @@
 // 	setQTYProductById,
 // 	setQTYProductsById,
 // } = require('../services/prodDetalle_service');
-const { getProductsByCategory } = require('../services/productView_service');
+const { 	getAllProductView,
+	getProductoByName,
+	setProductoById,
+	setProducts, } = require('../services/productView_service');
 const {
-	// getProductoByID,
+  getProductoByID,
 	createProducts,
-	setProducts,
+//	setProducts,
 } = require('../services/producto_service');
 
 // const  { registrarIngreso }= require("../services/opcaban_service");
@@ -14,8 +17,9 @@ class Productos {
 	// obtener todos los productos
 	static async getProductsByCategory(req, res) {
 		try {
-			// console.log(req);
-			const response = await getProductsByCategory(req.query);
+			const response = await getProductsByCategory({
+        categoryId:req.query.categoryId,
+        sucursalId:req.query.sucursalId});
 			return res.status(response.status).send(response);
 		} catch (error) {
 			return res
@@ -26,8 +30,7 @@ class Productos {
 
 	static async createProduct(req, res) {
 		try {
-			// console.log(req);
-			const response = await createProducts(req.body);
+			const response = await createProducts({body:req.body});
 			return res.status(response.status).send(response);
 		} catch (error) {
 			return res
@@ -36,7 +39,7 @@ class Productos {
 		}
 	}
 
-	static async setProduct(req, res) {
+	/*static async setProduct(req, res) {
 		try {
 			const response = await setProducts(req.query);
 			return res.status(response.status).send(response);
@@ -45,13 +48,13 @@ class Productos {
 				.status(500)
 				.send({ message: 'error setted product -> ', error });
 		}
-	}
+	}*/
+
 	static async getAllProducts(req, res) {
-		try {
-			// console.log("--->>>",req);
+		try {       
 			// const response= await getallProductos(null);
-			const response = await getAllProductViewResume({
-				sucursalId: req.sucursal,
+			const response = await getAllProductView({
+				sucursalId: req.query.sucursalId
 			});
 			return res.status(response.status).send(response);
 		} catch (error) {
@@ -62,16 +65,11 @@ class Productos {
 		}
 	}
 
-	static async getProduct(req, res) {
+	static async getProductByID(req, res) {
 		try {
-			console.log('llego-->', req);
-			const params = {
-				// usuarioId:req.usuario,
-				// sucursalId:req.sucursal,
-				// rolId:req.rol,
-				productoId: req.params.id,
-			};
-			const response = await getProductoByID(params);
+			const response = await getProductoByID({
+        productoId: req.query.productoId,
+        locationId: req.query.locationId});
 			return res.status(response.status).send(response);
 		} catch (error) {
 			console.log('===>>', error);
@@ -81,20 +79,42 @@ class Productos {
 		}
 	}
 
+  static async getfilter(req, res) {
+		try {
+			const response = await getProductoByfilter({
+        locationId: req.query.locationId,
+        categoryId: req.query.categoryId});
+			return res.status(response.status).send(response);
+		} catch (error) {
+			console.log('===>>', error);
+			return res
+				.status(500)
+				.send({ message: 'error in  getProduct -> ', error });
+		}
+	}
 	// para insertar cantidad actual
-	static async updateQtyProduct(req, res) {
+	static async updateProduct(req, res) {
 		try {
 			// console.log("-->",req.body);
 			let resp;
-			if (req.body.hasOwnProperty("producto")) {
-				resp = await setQTYProductById({ ...req.body.producto });
-			} else if (req.body.hasOwnProperty("productos")) {
-				resp = await setQTYProductsById({ productos: req.body.productos });
-			} else {
-				// console.log("objeto no reconocido");
-				resp.message = 'Error this json not contained products';
-				resp.status = 400;
-			}
+      resp = await setProductoById({ 
+        productoId:req.query.id,
+        body:req.body });
+			return res.status(resp.status).send(resp);
+		} catch (error) {
+			console.log('-->', error);
+			return res
+				.status(500)
+				.send({ message: 'error in updateQtyProduct -> ', error });
+		}
+	}
+
+  static async deleteProduct(req, res) {
+		try {
+			// console.log("-->",req.body);
+			let resp;
+      resp = await deleteProductById({ 
+        productoId:req.query.productoId});
 			return res.status(resp.status).send(resp);
 		} catch (error) {
 			console.log('-->', error);
