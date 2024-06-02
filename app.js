@@ -57,8 +57,8 @@ app.use("/clientes", ClientsRoute);
 //const PedidoRouter = require("./routes/pedidodet.route");
 //app.use("/compras", PedidoRouter);
 
-const facturaRouter = require('./routes/factura.route');
-app.use('/ventas', facturaRouter);
+// const facturaRouter = require('./routes/factura.route');
+// app.use('/ventas', facturaRouter);
 
 const rolRoute = require("./routes/rol.route");
 
