@@ -1,6 +1,7 @@
 const {
 	createItemPedido,
 	createItemsPedido,
+  getTotalPrecios
 } = require('../services/detpedido_service');
 
 class PedidoDetalle {
@@ -30,5 +31,15 @@ class PedidoDetalle {
 			return res.status(500).send({ message: 'error in regPedido -> ', error });
 		}
 	}
+
+  static async getAll(req, res) {
+		try {
+			const response = await getTotalPrecios(req.query);
+			return res.status(response.status).send(response);
+		} catch (error) {
+			return res.status(500).send({ message: "error -> ", error });
+		}
+	}
+
 }
 module.exports = PedidoDetalle;
