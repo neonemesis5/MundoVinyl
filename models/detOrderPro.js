@@ -30,6 +30,11 @@ OrderDetail.init(
 				key: 'id',
 			},
 		},
+		amtPurchase: {
+			type: DataTypes.DECIMAL(12, 3), // Numeric with precision (12) and scale (3) for price
+			allowNull: true,
+			field: 'amt_purchase',
+		},
 		qty: {
 			type: DataTypes.DECIMAL(12, 3), // Numeric with precision (12) and scale (3) for quantity
 			allowNull: true,

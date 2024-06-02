@@ -5,37 +5,28 @@ class InvoiceClientDetail extends Model {}
 
 InvoiceClientDetail.init(
 	{
-		id: {
-			type: DataTypes.INTEGER,
-			primaryKey: true,
-			allowNull: false,
-			field: 'id',
-			defaultValue: sequelize.literal("nextval('public.\"detFacCli\"')"),
-		},
 		productId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			field: 'products_id',
-			references: {
-				model: 'Product', // Assuming the model name for products table
-				key: 'id',
-			},
+			field: 'id', // Assuming 'id' refers to the product
 		},
-		invoiceClientId: {
+		productName: {
+			type: DataTypes.STRING(50), // Assuming name comes from products table
+			allowNull: true,
+			field: 'name',
+		},
+		detailId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			field: 'invoiceclients_id',
-			references: {
-				model: 'InvoiceClient', // Assuming the model name for invoice_clients table
-				key: 'id',
-			},
+			field: 'det_id',
 		},
 		qty: {
-			type: DataTypes.DECIMAL(12, 3), // Numeric with precision (12) and scale (3)
+			type: DataTypes.DECIMAL(12, 3), // Numeric with precision (12) and scale (3) for quantity
 			allowNull: true,
 			field: 'qty',
 		},
 		amtPriceSale: {
+			// Corrected naming convention (singular for price)
 			type: DataTypes.DECIMAL(12, 3), // Numeric with precision (12) and scale (3) for price
 			allowNull: true,
 			field: 'amt_pricesale',
@@ -50,12 +41,18 @@ InvoiceClientDetail.init(
 			allowNull: true,
 			field: 'status',
 		},
+		invoiceId: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			field: 'invoice_id',
+		},
 	},
 	{
-		underscored: true, // Use underscores for column names (matches table schema)
+		underscored: true, // Use underscores for column names (matches view schema)
 		modelName: 'InvoiceClientDetail',
-		tableName: 'det_invoiceclient',
-		timestamps: false, // Disable timestamps since no 'created_at' or 'updated_at' columns
+		tableName: 'det_factclient', // Use view name for reference
+		freezeTableName: true, // Prevent sequelize from pluralizing the table name
+		timestamps: false, // Disable timestamps since the view doesn't have them
 		sequelize,
 	}
 );
