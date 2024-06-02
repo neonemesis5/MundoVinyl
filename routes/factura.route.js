@@ -4,7 +4,7 @@ const facturaRouter = express.Router();
 const facturaController = require('../controller/api_factura.controller');
 const { autenticarJWT } = require('../middlewares/JWT');
 
-facturaRouter.post('/',autenticarJWT, facturaController.newfactura);
-
+facturaRouter.post('/create',autenticarJWT, facturaController.newfactura);
+facturaRouter.post('/filter',autenticarJWT, facturaController.newfactura);
 
 module.exports = facturaRouter;

@@ -22,5 +22,14 @@ class facturaController {
 				.send({ message: 'error in regFactura -> ', error });
 		}
 	}
+
+  static async getAll(req, res) {
+		try {
+			const response = await allUser(req.query);
+			return res.status(response.status).send(response);
+		} catch (error) {
+			return res.status(500).send({ message: "error -> ", error });
+		}
+	}
 }
 module.exports = facturaController;
