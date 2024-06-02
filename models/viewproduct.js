@@ -69,11 +69,21 @@ ProductbyCategory.init(
 			allowNull: true,
 			field: 'value', // Specify field name to match view column
 		},
-		pricesell:{
+		pricesell: {
 			type: DataTypes.DECIMAL, // Adjust data type if necessary
 			allowNull: true,
 			field: 'pricesell', // Specify field name to match view column
-		}
+		},
+		typeUnitId: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			field: 'typeunit_id',
+		},
+		typeUnitDesc: {
+			type: DataTypes.STRING(50), // Assuming description comes from types_units table
+			allowNull: true,
+			field: 'typeunit_desc',
+		},
 	},
 	{
 		underscored: true, // Respect the view's column naming convention
