@@ -51,14 +51,11 @@ app.use("/productos", ProductsRoute);
 const ClientsRoute = require("./routes/cliente.route");
 app.use("/clientes", ClientsRoute);
 
-const PedidoRouter = require("./routes/pedidodet.route");
-app.use("/compras", PedidoRouter);
+//const PedidoRouter = require("./routes/pedidodet.route");
+//app.use("/compras", PedidoRouter);
 
 const facturaRouter = require('./routes/factura.route');
 app.use('/ventas', facturaRouter);
-
-const empleadoRoute = require("./routes/empleado.route");
-app.use("/empleados", empleadoRoute);
 
 const rolRoute = require("./routes/rol.route");
 app.use("/rol", rolRoute);

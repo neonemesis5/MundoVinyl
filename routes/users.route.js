@@ -18,4 +18,6 @@ router.post('/login', usersController.login);
 router.post('/register', autenticarJWT,usersController.register);
 router.get('/filter', autenticarJWT, usersController.getUsersDptoLoc);
 // ProductsRoute.get('/:id',autenticarJWT, Productos.getProduct);
+router.put('/update',autenticarJWT, usersController.updateUser);
+
 module.exports = router;

@@ -5,8 +5,8 @@ const clientController = require("../controller/api_clients.controller");
 const { autenticarJWT } = require("../middlewares/JWT");
 
 clientRoute.get("/", autenticarJWT, clientController.getallClientes);
-clientRoute.post("/", autenticarJWT, clientController.createCliente);
-clientRoute.get('/details/:id',autenticarJWT, clientController.getCliente);
-clientRoute.put('/:id',autenticarJWT, clientController.updateCliente);
+clientRoute.post("/create", autenticarJWT, clientController.createCliente);
+clientRoute.get('/details',autenticarJWT, clientController.getCliente);
+clientRoute.put('/update',autenticarJWT, clientController.updateCliente);
 
 module.exports = clientRoute;

@@ -35,7 +35,7 @@ class clientController {
 
   static async updateCliente(req, res) {
     try {
-      const { id } = req.params.id;
+      const { id } = req.params;
       const { nombre, apellido, cedula, telefono } = req.body;
       const [updated] = await Cliente.update({ nombre, apellido, cedula, telefono }, { where: { id } });
       if (updated) {
@@ -51,8 +51,7 @@ class clientController {
     
   static async getCliente(req, res) {
 	  try {
-	    const { id } = req.params.id;
-      console.log('id:   '+id)
+	    const { id } = req.params;
 	    const cliente = await Cliente.findOne({ where: { id } });
 	    if (cliente) {
 	      res.status(200).json({ message: 'Cliente encontrado', data: cliente });

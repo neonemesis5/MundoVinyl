@@ -9,8 +9,6 @@ const {
 } = require("../middlewares/validations/user.validation");
 const UsuarioModel = require('../models/usuarios');
 const Usuariodptoloc = require('../models/viewEmp');
-// const SucUsuario = require("../models/user_sucursal");
-// const Sucursal = require("../models/sucursal");
 
 async function singIn(params) {
 	const response = {
