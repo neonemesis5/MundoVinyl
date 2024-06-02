@@ -37,33 +37,31 @@ const environment = process.env.NODE_ENV;
 Wlogger.info(`API initiated; starting ${environment} environment...`);
 
 // definiendo las rutas
+// const usersRoutes = require("./routes/users.route");
 const usersRoutes = require("./routes/users.route");
-
-app.use('/user', usersRoutes); // la ruta en la url es la definida  en las comillas, mientras que quien la atiende es la que posee la palabra route
+app.use('/user', usersRoutes); // la ruta en la url es la definida en en las comillas, mientras que quien la atiende es la que posee la palabra route
 
 // const opcabanRouter = require("./routes/opcajabanco.route");
 
 // app.use("/opcajaban", opcabanRouter);
 
 const ProductsRoute = require("./routes/productos.route");
-
 app.use("/productos", ProductsRoute);
 
-// const PedidoRouter = require("./routes/pedidodet.route");
+const ClientsRoute = require("./routes/cliente.route");
+app.use("/clientes", ClientsRoute);
 
-// app.use("/pedidos", PedidoRouter);
+const PedidoRouter = require("./routes/pedidodet.route");
+app.use("/compras", PedidoRouter);
 
-const clientRoute = require("./routes/cliente.route");
+const facturaRouter = require('./routes/factura.route');
+app.use('/ventas', facturaRouter);
 
-// const facturaRouter = require('./routes/factura.route');
+const empleadoRoute = require("./routes/empleado.route");
+app.use("/empleados", empleadoRoute);
 
-// app.use('/factura', facturaRouter);
-
-app.use("/cliente", clientRoute);
-
-// const rolRoute = require("./routes/rol.route");
-
-// app.use("/rol", rolRoute);
+const rolRoute = require("./routes/rol.route");
+app.use("/rol", rolRoute);
 
 app.use((req, res, next) => {
 	const err = new Error(
