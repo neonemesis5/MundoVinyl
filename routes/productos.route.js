@@ -8,7 +8,7 @@ const { autenticarJWT } = require('../middlewares/JWT');
 ProductsRoute.post('/register',autenticarJWT,Productos.createProduct);
 
 ProductsRoute.get('/filter',autenticarJWT, Productos.getAllProducts);
-ProductsRoute.get('/details',autenticarJWT, Productos.getProduct);
+ProductsRoute.get('/details',autenticarJWT, Productos.getProductsByCategory);
 ProductsRoute.put('/update',autenticarJWT, Productos.updateQtyProduct);
 
 module.exports = ProductsRoute;
