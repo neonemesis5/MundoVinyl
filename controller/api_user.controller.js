@@ -27,7 +27,6 @@ class User {
 
 	static async getUsersDptoLoc(req, res) {
 		try {
-      console.log('>>>req'+req.query.dptoid)
 			const response = await allUser(req.query);
 			return res.status(response.status).send(response);
 		} catch (error) {
