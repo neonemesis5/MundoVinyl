@@ -12,12 +12,12 @@ const { autenticarJWT } = require('../middlewares/JWT');
 // router.delete('/:id', autenticarJWT, usersController.deleteUser);
 
 // Rutas públicas
-// router.post('/', usersController.login);
-
+//router.post('/', usersController.getAllUsers);
+router.get('/', autenticarJWT, usersController.getUsersDptoLoc);
 router.post('/login', usersController.login);
 router.post('/register', autenticarJWT,usersController.register);
-router.get('/filter', autenticarJWT, usersController.getUsersDptoLoc);
-// ProductsRoute.get('/:id',autenticarJWT, Productos.getProduct);
+//router.get('/filter', autenticarJWT, usersController.getUsersDptoLoc);
+//ProductsRoute.get('/:id',autenticarJWT, Productos.getProduct);
 router.put('/update',autenticarJWT, usersController.updateUser);
 //router.put('/delete',autenticarJWT, usersController.deleteUser);
 module.exports = router;

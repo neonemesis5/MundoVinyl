@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "dev") {
 			origin: [
 				"http://localhost:3000",
 				"https://localhost:3000",
-				//   "http://localhost:4200",
+				"http://localhost:5173",
 				//   "https://localhost:4200",
 			],
 			credentials: true,
@@ -27,6 +27,7 @@ if (process.env.NODE_ENV === "dev") {
 		cors({
 			origin: [
 				"http://localhost:4200", // this line should be remove
+        "http://localhost:5173",
 			],
 			credentials: true,
 			optionsSuccessStatus: 200,
@@ -59,6 +60,9 @@ app.use('/factura', facturaRouter);
 
 const rolRoute = require("./routes/rol.route");
 app.use("/rol", rolRoute);
+
+const catalogue = require("./routes/catalogue.route");
+app.use("/catalogue", catalogue);
 
 app.use((req, res, next) => {
 	const err = new Error(
