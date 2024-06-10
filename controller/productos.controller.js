@@ -1,7 +1,3 @@
-// const {
-// 	setQTYProductById,
-// 	setQTYProductsById,
-// } = require('../services/prodDetalle_service');
 const { 	getAllProductView,
 	getProductoByName,
 	setProductoById,
@@ -9,7 +5,6 @@ const { 	getAllProductView,
 const {
   getProductoByID,
 	createProducts,
-//	setProducts,
 } = require('../services/producto_service');
 
 // const  { registrarIngreso }= require("../services/opcaban_service");
