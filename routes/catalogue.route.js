@@ -8,4 +8,6 @@ const catalogueController = require("../controller/catalogue.controller");
 
 catalogueRoute.get('/category',autenticarJWT, catalogueController.getAllCategory);
 
+catalogueRoute.get('/location',autenticarJWT, catalogueController.getAllLocation);
+
 module.exports = catalogueRoute;
